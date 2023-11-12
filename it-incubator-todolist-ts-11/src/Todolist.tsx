@@ -6,6 +6,7 @@ import {Checkbox, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 import {MemoButton} from "./MemoButton";
 import {Task, TaskType} from "./Task";
+import {TaskWithRedux} from "./TaskWithRedux";
 
 
 type PropsType = {
@@ -67,11 +68,16 @@ export const Todolist = memo((props: PropsType) => {
             {
                 tasks.map(tl => {
                     return (
-                        <Task key={tl.id}
-                              task={tl}
-                              removeTask={removeTask}
-                              changeTaskStatus={changeStatus}
-                              changeTaskTitle={changeTaskTitle}/>
+                        // <Task key={tl.id}
+                        //       task={tl}
+                        //       removeTask={removeTask}
+                        //       changeTaskStatus={changeStatus}
+                        //       changeTaskTitle={changeTaskTitle}/>
+                        <TaskWithRedux
+                            key={tl.id}
+                            task={tl}
+                            todolistId={props.id}
+                        />
                     )
                 })
             }

@@ -16,16 +16,27 @@ export type TaskPropsType = {
     changeTaskTitle: (taskId: string, newTitle: string) => void
 }
 
-export const Task: FC<TaskPropsType> = memo(({task, removeTask, changeTaskStatus, changeTaskTitle}) => {
+export const Task: FC<TaskPropsType> = ({task, removeTask, changeTaskStatus, changeTaskTitle}) => {
 
     const onClickHandler = () => removeTask(task.id)
-    const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+
+    // const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    //     let newIsDoneValue = e.currentTarget.checked;
+    //     changeTaskStatus(task.id, newIsDoneValue);
+    // }, [])
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked;
         changeTaskStatus(task.id, newIsDoneValue);
-    }, [])
-    const onTitleChangeHandler = useCallback((newValue: string) => {
+    }
+
+    // const onTitleChangeHandler = useCallback((newValue: string) => {
+    //     changeTaskTitle(task.id, newValue);
+    // }, [changeTaskTitle, task.id]);
+
+    const onTitleChangeHandler = (newValue: string) => {
         changeTaskTitle(task.id, newValue);
-    }, [changeTaskTitle, task.id]);
+    }
 
     return <div key={task.id} className={task.isDone ? "is-done" : ""}>
         <Checkbox
@@ -39,4 +50,4 @@ export const Task: FC<TaskPropsType> = memo(({task, removeTask, changeTaskStatus
             <Delete/>
         </IconButton>
     </div>
-});
+};
