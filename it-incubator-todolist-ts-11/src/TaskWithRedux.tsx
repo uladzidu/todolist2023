@@ -40,5 +40,4 @@ export const TaskWithRedux: FC<TaskWithReduxPropsType> = memo(({task, todolistId
             </IconButton>
         </div>
     );
-};
-)
+});
